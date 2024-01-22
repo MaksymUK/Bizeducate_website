@@ -8,6 +8,7 @@ class Country(models.Model):
 
     class Meta:
         ordering = ["name"]
+        verbose_name_plural = "countries"
 
     def __str__(self):
         return self.name
@@ -15,6 +16,9 @@ class Country(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
+
+    class Meta:
+        verbose_name_plural = "categories"
 
     def __str__(self):
         return self.name
@@ -24,7 +28,7 @@ class Trainer(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     qualification = models.CharField(max_length=500, blank=True)
-    profile = models.TextField(max_length=1000)
+    profile = models.TextField(max_length=1000, blank=True)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, blank=True, related_name="trainers")
 
     def __str__(self):
